@@ -21,13 +21,13 @@ import re
 import sys
 import statistics
 import argparse
+from pathlib import Path
 
 # ── week-02 경로 추가 ──────────────────────────────────────────
 _W02 = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "week-02", "proLmpa")
 sys.path.insert(0, _W02)
 
 from rag_basic import (
-    load_pdf,
     retrieve,
     build_index,
     CHROMA_PATH,
@@ -36,10 +36,12 @@ from rag_basic import (
     PDF_PATH,
 )
 import chromadb
+import pdfplumber
 from sentence_transformers import SentenceTransformer
 
 # ── 상수 ──────────────────────────────────────────────────────
 QA_COLLECTION_NAME = "medical_aid_qa"
+DATA_DIR = os.path.join(_W02, "data")
 
 # Config A: 구조적 청킹 파라미터
 QA_CHUNK_MIN_LEN = 100   # 이 미만은 노이즈로 버림
@@ -70,13 +72,149 @@ except ImportError:
 
 
 # ══════════════════════════════════════════════════════════════
-# Config A: 구조적 청킹
+# 다중 PDF 로드 (테이블 + 텍스트)
 # ══════════════════════════════════════════════════════════════
+
+def load_pdf_with_tables(path: str) -> list[dict]:
+    """
+    pdfplumber로 텍스트와 구조화된 테이블을 함께 추출.
+    반환: [{"page": int, "text": str, "tables": [[[cell, ...], ...]], "source": str}, ...]
+    """
+    source = os.path.basename(path)
+    pages = []
+    with pdfplumber.open(path) as pdf:
+        for i, page in enumerate(pdf.pages, start=1):
+            text = page.extract_text() or ""
+            tables = page.extract_tables() or []
+            if text.strip() or tables:
+                pages.append({
+                    "page": i,
+                    "text": text.strip(),
+                    "tables": tables,
+                    "source": source,
+                })
+    return pages
+
+
+def _format_table(table: list[list]) -> str:
+    """테이블을 파이프 구분 텍스트로 변환. None 셀은 빈 문자열로."""
+    rows = []
+    for row in table:
+        cells = [str(c).strip().replace("\n", " ") if c is not None else "" for c in row]
+        rows.append(" | ".join(cells))
+    return "\n".join(rows)
+
+
+# ══════════════════════════════════════════════════════════════
+# Config A: 구조적 청킹 (테이블 + Q&A 경계 인식)
+# ══════════════════════════════════════════════════════════════
+
+def chunk_smart(pages: list[dict]) -> list[dict]:
+    """
+    테이블·Q&A 경계 인식 청킹. load_pdf_with_tables() 출력을 받는다.
+
+    우선순위:
+    1. 구조화된 테이블 → 각 테이블을 단일 청크 (800자 초과 시 10행 슬라이딩)
+    2. Q&A 경계(Q\\d+.) 텍스트 분할
+    3. 나머지 텍스트: 500/400 고정 크기 폴백
+
+    source 필드가 있으면 메타데이터에 기록한다.
+    """
+    chunks = []
+    chunk_id = 0
+
+    for page_data in pages:
+        page_num = page_data["page"]
+        source = page_data.get("source", os.path.basename(PDF_PATH))
+        text = page_data.get("text", "")
+        tables = page_data.get("tables", [])
+
+        # 1. 테이블 청크 ──────────────────────────────────────
+        for tbl_idx, table in enumerate(tables):
+            tbl_text = _format_table(table).strip()
+            if len(tbl_text) < QA_CHUNK_MIN_LEN:
+                continue
+            if len(tbl_text) > QA_CHUNK_MAX_LEN:
+                # 큰 테이블: 10행 슬라이딩, 2행 겹침
+                rows = tbl_text.split("\n")
+                step, overlap = 10, 2
+                for start in range(0, len(rows), step - overlap):
+                    sub = "\n".join(rows[start : start + step]).strip()
+                    if len(sub) >= QA_CHUNK_MIN_LEN:
+                        chunks.append({
+                            "id": f"qa_chunk_{chunk_id}",
+                            "text": sub,
+                            "metadata": {
+                                "source": source,
+                                "page": page_num,
+                                "chunk_id": chunk_id,
+                                "method": "table_slide",
+                                "table_index": tbl_idx,
+                            },
+                        })
+                        chunk_id += 1
+            else:
+                chunks.append({
+                    "id": f"qa_chunk_{chunk_id}",
+                    "text": tbl_text,
+                    "metadata": {
+                        "source": source,
+                        "page": page_num,
+                        "chunk_id": chunk_id,
+                        "method": "table",
+                        "table_index": tbl_idx,
+                    },
+                })
+                chunk_id += 1
+
+        # 2. 텍스트: 헤더/풋터 제거 → Q&A 분할 → 고정 폴백 ──
+        cleaned = NOISE_RE.sub("", text).strip()
+        if not cleaned:
+            continue
+
+        parts = QA_BOUNDARY_RE.split(cleaned)
+        for part in parts:
+            part = part.strip()
+            if not part:
+                continue
+            if len(part) > QA_CHUNK_MAX_LEN:
+                start = 0
+                while start < len(part):
+                    sub = part[start : start + 500].strip()
+                    if len(sub) >= QA_CHUNK_MIN_LEN:
+                        chunks.append({
+                            "id": f"qa_chunk_{chunk_id}",
+                            "text": sub,
+                            "metadata": {
+                                "source": source,
+                                "page": page_num,
+                                "chunk_id": chunk_id,
+                                "method": "fixed_fallback",
+                            },
+                        })
+                        chunk_id += 1
+                    start += 400
+            elif len(part) >= QA_CHUNK_MIN_LEN:
+                chunks.append({
+                    "id": f"qa_chunk_{chunk_id}",
+                    "text": part,
+                    "metadata": {
+                        "source": source,
+                        "page": page_num,
+                        "chunk_id": chunk_id,
+                        "method": "qa_split",
+                    },
+                })
+                chunk_id += 1
+
+    return chunks
+
 
 def chunk_qa(pages: list[dict]) -> list[dict]:
     """
-    Q&A 경계(Q\d+.)에서 분할. 100자 미만 청크(헤더·풋터 잔재) 제거.
+    Q&A 경계(Q\\d+.)에서 분할. 100자 미만 청크(헤더·풋터 잔재) 제거.
     800자 초과 블록은 500/400 겹침 고정 크기 폴백.
+    경계 패턴: Q\\d+.
     """
     chunks = []
     chunk_id = 0
@@ -134,17 +272,31 @@ def chunk_qa(pages: list[dict]) -> list[dict]:
 
 
 def build_qa_index(embed_model: SentenceTransformer) -> chromadb.Collection:
-    """PDF를 Q&A 청킹으로 로드해 medical_aid_qa 컬렉션 구축. 기존 컬렉션은 삭제 후 재생성."""
-    pages = load_pdf(PDF_PATH)
-    chunks = chunk_qa(pages)
+    """
+    DATA_DIR 의 모든 PDF를 테이블+Q&A 청킹으로 로드해 medical_aid_qa 컬렉션 구축.
+    기존 컬렉션은 삭제 후 재생성.
+    """
+    pdf_files = sorted(Path(DATA_DIR).glob("*.pdf"))
+    if not pdf_files:
+        raise FileNotFoundError(f"PDF 파일 없음: {DATA_DIR}")
+
+    all_pages: list[dict] = []
+    for pdf_path in pdf_files:
+        print(f"[Config A] 로드: {pdf_path.name}")
+        pages = load_pdf_with_tables(str(pdf_path))
+        all_pages.extend(pages)
+        print(f"  → {len(pages)}페이지")
+
+    chunks = chunk_smart(all_pages)
 
     lens = [len(c["text"]) for c in chunks]
-    print(f"[Config A] {len(chunks)}개 청크 생성")
+    print(f"[Config A] 총 {len(chunks)}개 청크 ({len(pdf_files)}개 PDF)")
     print(f"  길이: 최소={min(lens)}, 최대={max(lens)}, "
           f"평균={statistics.mean(lens):.0f}, 중앙값={statistics.median(lens):.0f}")
-    qa_chunks = sum(1 for c in chunks if c["metadata"]["method"] == "qa_split")
-    fb_chunks = len(chunks) - qa_chunks
-    print(f"  Q&A 분할={qa_chunks}개, 고정크기 폴백={fb_chunks}개")
+    for method in ("table", "table_slide", "qa_split", "fixed_fallback"):
+        n = sum(1 for c in chunks if c["metadata"].get("method") == method)
+        if n:
+            print(f"  {method}={n}개")
 
     client = chromadb.PersistentClient(path=CHROMA_PATH)
     try:
@@ -296,10 +448,10 @@ class HybridRetriever:
 
 def _inspect(embed_model: SentenceTransformer) -> None:
     print("\n" + "=" * 70)
-    print("▶ Config A: p.17 청크 확인")
+    print("▶ Config A: 다중 PDF + 테이블/Q&A 청킹 확인")
     print("=" * 70)
 
-    # Build (or rebuild) QA index
+    # Build (or rebuild) QA index from all PDFs
     qa_collection = build_qa_index(embed_model)
 
     result = qa_collection.get(include=["documents", "metadatas"])
@@ -308,28 +460,42 @@ def _inspect(embed_model: SentenceTransformer) -> None:
         key=lambda x: int(x[0].split("_")[-1]),
     )
 
-    p17_chunks = [(cid, text, meta) for cid, text, meta in items if meta.get("page") == 17]
+    # PDF별 청크 수 집계
+    from collections import Counter
+    source_counts = Counter(meta.get("source", "unknown") for _, _, meta in items)
+    method_counts = Counter(meta.get("method", "unknown") for _, _, meta in items)
+    print(f"\nPDF별 청크 수:")
+    for src, n in sorted(source_counts.items()):
+        print(f"  {src}: {n}개")
+    print(f"\n청킹 방법별:")
+    for method, n in sorted(method_counts.items()):
+        print(f"  {method}: {n}개")
+
+    # 원본 PDF p.17 틀니 확인 (소스 필터)
+    orig_src = os.path.basename(PDF_PATH)
+    p17_chunks = [
+        (cid, text, meta) for cid, text, meta in items
+        if meta.get("page") == 17 and meta.get("source") == orig_src
+    ]
     if p17_chunks:
-        print(f"\np.17 청크 {len(p17_chunks)}개:")
+        print(f"\n[{orig_src}] p.17 청크 {len(p17_chunks)}개:")
         for cid, text, meta in p17_chunks:
             print(f"  {cid} ({meta['method']}, {len(text)}자)")
             print(f"  미리보기: {text[:120].replace(chr(10), ' ')}…")
-        print()
-        # 틀니/A48 포함 여부 확인
         a48_chunks = [cid for cid, text, _ in p17_chunks if "틀니" in text and "5%" in text]
         if a48_chunks:
-            print(f"  ✔ A48(틀니 본인부담률) 포함 청크: {a48_chunks}")
+            print(f"  [OK] A48(틀니 본인부담률) 포함 청크: {a48_chunks}")
         else:
-            print("  ✘ A48 내용(틀니+5%)이 p.17 청크에서 발견되지 않음 — PDF 추출 확인 필요")
+            print("  [!!] A48 내용(틀니+5%)이 p.17 청크에서 발견되지 않음 — PDF 추출 확인 필요")
     else:
-        print("  p.17 청크 없음")
+        print(f"  [{orig_src}] p.17 청크 없음")
 
     # 100자 미만 청크 확인
     short_chunks = [(cid, len(text)) for cid, text, _ in items if len(text) < QA_CHUNK_MIN_LEN]
     if short_chunks:
-        print(f"\n  ✘ 100자 미만 청크 {len(short_chunks)}개 발견: {short_chunks}")
+        print(f"\n  [!!] 100자 미만 청크 {len(short_chunks)}개 발견: {short_chunks}")
     else:
-        print("  ✔ 100자 미만 청크 없음")
+        print("  [OK] 100자 미만 청크 없음")
 
     print("\n" + "=" * 70)
     print("▶ Config B: Q2 쿼리 BM25 Top-5")
@@ -353,9 +519,9 @@ def _inspect(embed_model: SentenceTransformer) -> None:
         print(f"     미리보기: {hit['text'][:80].replace(chr(10), ' ')}…")
 
     if any(h["id"] == "chunk_59" for h in hits):
-        print("\n  ✔ chunk_59 가 RRF Top-5에 포함됨")
+        print("\n  [OK] chunk_59 가 RRF Top-5에 포함됨")
     else:
-        print("\n  ✘ chunk_59 미포함 — 하이브리드 검색도 실패 (Q2 여전히 어려움)")
+        print("\n  [!!] chunk_59 미포함 — 하이브리드 검색도 실패 (Q2 여전히 어려움)")
 
 
 def main() -> None:
