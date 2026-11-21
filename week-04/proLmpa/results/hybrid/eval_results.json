@@ -8,32 +8,32 @@
     "page_hit_at_5": 1.0,
     "answerability_refused": false,
     "answerability_correct": true,
-    "faithfulness": 0.8,
+    "faithfulness": 1.0,
     "faithfulness_na_reason": null,
     "factual_correctness_recall": 1.0,
-    "response_relevancy": 0.9752024422828879,
+    "response_relevancy": 0.9712547070312469,
     "response_relevancy_na_reason": null,
     "context_recall": 1.0,
     "context_recall_na_reason": null,
     "timing": {
-      "retrieval_ms": 52,
-      "generation_ms": 6085,
-      "total_ms": 6137
+      "retrieval_ms": 53,
+      "generation_ms": 6416,
+      "total_ms": 6469
     },
     "cost": {
       "embedding_calls": 1,
       "bm25_calls": 1,
       "llm_calls": 1,
       "input_tokens": 2728,
-      "output_tokens": 424,
-      "estimated_rag_cost_usd": 0.014544
+      "output_tokens": 436,
+      "estimated_rag_cost_usd": 0.014724
     },
     "eval_cost": {
-      "ragas_time_ms": 167899,
+      "ragas_time_ms": 155812,
       "note": "Ragas LLM 호출 수 미추적; 시간만 기록"
     },
-    "human_judgment": "pass",
-    "human_notes": "baseline 컬렉션 사용으로 chunk_40/42(p.13) 정상 검색. 응급증상, 장애인 보조기기 두 예외 모두 정확히 명시"
+    "human_judgment": null,
+    "human_notes": null
   },
   {
     "id": "Q2",
@@ -47,29 +47,29 @@
     "faithfulness": 1.0,
     "faithfulness_na_reason": null,
     "factual_correctness_recall": 1.0,
-    "response_relevancy": 0.9804176630582155,
+    "response_relevancy": 0.9797129386282025,
     "response_relevancy_na_reason": null,
     "context_recall": 1.0,
     "context_recall_na_reason": null,
     "timing": {
-      "retrieval_ms": 71,
-      "generation_ms": 3814,
-      "total_ms": 3885
+      "retrieval_ms": 54,
+      "generation_ms": 4269,
+      "total_ms": 4323
     },
     "cost": {
       "embedding_calls": 1,
       "bm25_calls": 1,
       "llm_calls": 1,
       "input_tokens": 2843,
-      "output_tokens": 191,
-      "estimated_rag_cost_usd": 0.011394
+      "output_tokens": 190,
+      "estimated_rag_cost_usd": 0.011379
     },
     "eval_cost": {
-      "ragas_time_ms": 167899,
+      "ragas_time_ms": 155812,
       "note": "Ragas LLM 호출 수 미추적; 시간만 기록"
     },
-    "human_judgment": "pass",
-    "human_notes": "BM25가 \"틀니\", \"1종\", \"5%\" 형태소로 chunk_59를 BM25 Top-2에 올림 → RRF Top-2 진입. 답변: 1종 5%, 2종 15% — PDF A48와 일치"
+    "human_judgment": null,
+    "human_notes": null
   },
   {
     "id": "Q3",
@@ -83,29 +83,29 @@
     "faithfulness": 1.0,
     "faithfulness_na_reason": null,
     "factual_correctness_recall": 1.0,
-    "response_relevancy": 0.9535762827887947,
+    "response_relevancy": 0.9223844557251937,
     "response_relevancy_na_reason": null,
     "context_recall": 1.0,
     "context_recall_na_reason": null,
     "timing": {
-      "retrieval_ms": 45,
-      "generation_ms": 11029,
-      "total_ms": 11074
+      "retrieval_ms": 49,
+      "generation_ms": 9655,
+      "total_ms": 9704
     },
     "cost": {
       "embedding_calls": 1,
       "bm25_calls": 1,
       "llm_calls": 1,
       "input_tokens": 2855,
-      "output_tokens": 614,
-      "estimated_rag_cost_usd": 0.017775
+      "output_tokens": 603,
+      "estimated_rag_cost_usd": 0.01761
     },
     "eval_cost": {
-      "ragas_time_ms": 167899,
+      "ragas_time_ms": 155812,
       "note": "Ragas LLM 호출 수 미추적; 시간만 기록"
     },
-    "human_judgment": "pass",
-    "human_notes": "1종 500원, 2종 500원 명시. 경증질환 차등제 세부사항도 문서 내 근거 있음 — 핵심 사실 충족"
+    "human_judgment": null,
+    "human_notes": null
   },
   {
     "id": "Q4",
@@ -124,24 +124,24 @@
     "context_recall": null,
     "context_recall_na_reason": "unanswerable 질문 → N/A",
     "timing": {
-      "retrieval_ms": 49,
-      "generation_ms": 5734,
-      "total_ms": 5783
+      "retrieval_ms": 45,
+      "generation_ms": 6192,
+      "total_ms": 6237
     },
     "cost": {
       "embedding_calls": 1,
       "bm25_calls": 1,
       "llm_calls": 1,
       "input_tokens": 2826,
-      "output_tokens": 281,
-      "estimated_rag_cost_usd": 0.012693
+      "output_tokens": 305,
+      "estimated_rag_cost_usd": 0.013053
     },
     "eval_cost": {
-      "ragas_time_ms": 167899,
+      "ragas_time_ms": 155812,
       "note": "Ragas LLM 호출 수 미추적; 시간만 기록"
     },
-    "human_judgment": "partial",
-    "human_notes": "거절 + \"미용 목적 성형수술은 일반적으로 비급여 대상에 해당할 가능성이 높으며\" 추론 포함 — 문서 외 추론"
+    "human_judgment": null,
+    "human_notes": null
   },
   {
     "id": "Q5",
@@ -152,32 +152,32 @@
     "page_hit_at_5": 1.0,
     "answerability_refused": true,
     "answerability_correct": null,
-    "faithfulness": 0.75,
+    "faithfulness": 0.8333333333333334,
     "faithfulness_na_reason": null,
     "factual_correctness_recall": 1.0,
-    "response_relevancy": 0.0,
+    "response_relevancy": 0.9565929967457235,
     "response_relevancy_na_reason": null,
     "context_recall": 1.0,
     "context_recall_na_reason": null,
     "timing": {
-      "retrieval_ms": 51,
-      "generation_ms": 6297,
-      "total_ms": 6348
+      "retrieval_ms": 43,
+      "generation_ms": 5777,
+      "total_ms": 5820
     },
     "cost": {
       "embedding_calls": 1,
       "bm25_calls": 1,
       "llm_calls": 1,
       "input_tokens": 2722,
-      "output_tokens": 365,
-      "estimated_rag_cost_usd": 0.013641
+      "output_tokens": 341,
+      "estimated_rag_cost_usd": 0.013281
     },
     "eval_cost": {
-      "ragas_time_ms": 167899,
+      "ragas_time_ms": 155812,
       "note": "Ragas LLM 호출 수 미추적; 시간만 기록"
     },
-    "human_judgment": "pass",
-    "human_notes": "임플란트 1종 10%, 2종 20% 정확. 스케일링은 \"찾을 수 없습니다\"로 거절 — rubric 충족"
+    "human_judgment": null,
+    "human_notes": null
   },
   {
     "id": "Q6",
@@ -188,7 +188,7 @@
     "page_hit_at_5": 0.0,
     "answerability_refused": true,
     "answerability_correct": false,
-    "faithfulness": 0.6666666666666666,
+    "faithfulness": 0.6,
     "faithfulness_na_reason": null,
     "factual_correctness_recall": 0.0,
     "response_relevancy": 0.0,
@@ -196,24 +196,24 @@
     "context_recall": 0.0,
     "context_recall_na_reason": null,
     "timing": {
-      "retrieval_ms": 47,
-      "generation_ms": 7965,
-      "total_ms": 8012
+      "retrieval_ms": 44,
+      "generation_ms": 3797,
+      "total_ms": 3841
     },
     "cost": {
       "embedding_calls": 1,
       "bm25_calls": 1,
       "llm_calls": 1,
       "input_tokens": 2951,
-      "output_tokens": 402,
-      "estimated_rag_cost_usd": 0.014883
+      "output_tokens": 197,
+      "estimated_rag_cost_usd": 0.011808
     },
     "eval_cost": {
-      "ragas_time_ms": 167899,
+      "ragas_time_ms": 155812,
       "note": "Ragas LLM 호출 수 미추적; 시간만 기록"
     },
-    "human_judgment": "fail",
-    "human_notes": "BM25에서 \"1,000원\" 키워드가 다수 청크에 분산돼 p.5 표 행이 Top-5 미진입. 거절 답변. 핵심(1,000원) 누락"
+    "human_judgment": null,
+    "human_notes": null
   },
   {
     "id": "Q7",
@@ -224,32 +224,32 @@
     "page_hit_at_5": 1.0,
     "answerability_refused": false,
     "answerability_correct": true,
-    "faithfulness": 0.9090909090909091,
+    "faithfulness": 0.8888888888888888,
     "faithfulness_na_reason": null,
     "factual_correctness_recall": 0.5,
-    "response_relevancy": 0.9530685611522456,
+    "response_relevancy": 0.9518568071592858,
     "response_relevancy_na_reason": null,
     "context_recall": 1.0,
     "context_recall_na_reason": null,
     "timing": {
-      "retrieval_ms": 48,
-      "generation_ms": 7327,
-      "total_ms": 7375
+      "retrieval_ms": 44,
+      "generation_ms": 5895,
+      "total_ms": 5939
     },
     "cost": {
       "embedding_calls": 1,
       "bm25_calls": 1,
       "llm_calls": 1,
       "input_tokens": 2472,
-      "output_tokens": 403,
-      "estimated_rag_cost_usd": 0.013461
+      "output_tokens": 368,
+      "estimated_rag_cost_usd": 0.012936
     },
     "eval_cost": {
-      "ragas_time_ms": 167899,
+      "ragas_time_ms": 155812,
       "note": "Ragas LLM 호출 수 미추적; 시간만 기록"
     },
-    "human_judgment": "pass",
-    "human_notes": "\"65세 이상 틀니 비용은 본인부담금 보상제 지급 대상에서 제외됩니다\" 명시 + 제외 항목 목록 — PDF A53와 일치"
+    "human_judgment": null,
+    "human_notes": null
   },
   {
     "id": "Q8",
@@ -260,7 +260,7 @@
     "page_hit_at_5": 0.0,
     "answerability_refused": true,
     "answerability_correct": false,
-    "faithfulness": 0.8333333333333334,
+    "faithfulness": 0.5,
     "faithfulness_na_reason": null,
     "factual_correctness_recall": 0.0,
     "response_relevancy": 0.0,
@@ -268,24 +268,24 @@
     "context_recall": 0.0,
     "context_recall_na_reason": null,
     "timing": {
-      "retrieval_ms": 49,
-      "generation_ms": 5995,
-      "total_ms": 6044
+      "retrieval_ms": 45,
+      "generation_ms": 5367,
+      "total_ms": 5412
     },
     "cost": {
       "embedding_calls": 1,
       "bm25_calls": 1,
       "llm_calls": 1,
       "input_tokens": 2850,
-      "output_tokens": 284,
-      "estimated_rag_cost_usd": 0.01281
+      "output_tokens": 265,
+      "estimated_rag_cost_usd": 0.012525
     },
     "eval_cost": {
-      "ragas_time_ms": 167899,
+      "ragas_time_ms": 155812,
       "note": "Ragas LLM 호출 수 미추적; 시간만 기록"
     },
-    "human_judgment": "fail",
-    "human_notes": "p.6 조현병 테이블 추출 실패로 거절. 모든 구성 공통 실패"
+    "human_judgment": null,
+    "human_notes": null
   },
   {
     "id": "Q9",
@@ -305,22 +305,22 @@
     "context_recall_na_reason": "unanswerable 질문 → N/A",
     "timing": {
       "retrieval_ms": 45,
-      "generation_ms": 3635,
-      "total_ms": 3680
+      "generation_ms": 3741,
+      "total_ms": 3786
     },
     "cost": {
       "embedding_calls": 1,
       "bm25_calls": 1,
       "llm_calls": 1,
       "input_tokens": 2945,
-      "output_tokens": 206,
-      "estimated_rag_cost_usd": 0.011925
+      "output_tokens": 213,
+      "estimated_rag_cost_usd": 0.01203
     },
     "eval_cost": {
-      "ragas_time_ms": 167899,
+      "ragas_time_ms": 155812,
       "note": "Ragas LLM 호출 수 미추적; 시간만 기록"
     },
-    "human_judgment": "pass",
-    "human_notes": "국외 진료 관련 내용 없음을 올바르게 거절. 문서 외 추론 없음 — rubric 충족"
+    "human_judgment": null,
+    "human_notes": null
   }
 ]

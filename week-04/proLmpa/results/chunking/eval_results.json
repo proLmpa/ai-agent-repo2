@@ -5,35 +5,35 @@
     "question": "선택의료급여기관 적용 대상자가 의료급여의뢰서 없이 다른 기관에서 진료받을 수 있는 경우는 언제인가요?",
     "config": "chunking",
     "evidence_recall_at_5": 0.0,
-    "page_hit_at_5": 0.0,
-    "answerability_refused": true,
-    "answerability_correct": false,
-    "faithfulness": 0.8333333333333334,
+    "page_hit_at_5": 1.0,
+    "answerability_refused": false,
+    "answerability_correct": true,
+    "faithfulness": 1.0,
     "faithfulness_na_reason": null,
-    "factual_correctness_recall": 0.0,
-    "response_relevancy": 0.0,
+    "factual_correctness_recall": 1.0,
+    "response_relevancy": 0.9553420386574668,
     "response_relevancy_na_reason": null,
-    "context_recall": 0.0,
+    "context_recall": 1.0,
     "context_recall_na_reason": null,
     "timing": {
       "retrieval_ms": 45,
-      "generation_ms": 8908,
-      "total_ms": 8953
+      "generation_ms": 5774,
+      "total_ms": 5819
     },
     "cost": {
       "embedding_calls": 1,
       "bm25_calls": 0,
       "llm_calls": 1,
-      "input_tokens": 2358,
-      "output_tokens": 548,
-      "estimated_rag_cost_usd": 0.015294
+      "input_tokens": 2051,
+      "output_tokens": 363,
+      "estimated_rag_cost_usd": 0.011598
     },
     "eval_cost": {
-      "ragas_time_ms": 163456,
+      "ragas_time_ms": 154773,
       "note": "Ragas LLM 호출 수 미추적; 시간만 기록"
     },
-    "human_judgment": "fail",
-    "human_notes": "2026 안내 문서(p.628) 청크가 Top-5를 차지해 2024 FAQ A25(응급/장애인 보조기기)를 검색하지 못함. 답변이 한의원 예외를 언급하고 \"추가 내용 찾을 수 없습니다\"로 핵심 누락"
+    "human_judgment": null,
+    "human_notes": null
   },
   {
     "id": "Q2",
@@ -46,30 +46,30 @@
     "answerability_correct": true,
     "faithfulness": 1.0,
     "faithfulness_na_reason": null,
-    "factual_correctness_recall": 0.0,
-    "response_relevancy": 0.9592572864949789,
+    "factual_correctness_recall": 1.0,
+    "response_relevancy": 0.9827834950091058,
     "response_relevancy_na_reason": null,
     "context_recall": 1.0,
     "context_recall_na_reason": null,
     "timing": {
-      "retrieval_ms": 46,
-      "generation_ms": 2940,
-      "total_ms": 2986
+      "retrieval_ms": 43,
+      "generation_ms": 4266,
+      "total_ms": 4309
     },
     "cost": {
       "embedding_calls": 1,
       "bm25_calls": 0,
       "llm_calls": 1,
-      "input_tokens": 2202,
-      "output_tokens": 185,
-      "estimated_rag_cost_usd": 0.009381
+      "input_tokens": 2373,
+      "output_tokens": 215,
+      "estimated_rag_cost_usd": 0.010344
     },
     "eval_cost": {
-      "ragas_time_ms": 163456,
+      "ragas_time_ms": 154773,
       "note": "Ragas LLM 호출 수 미추적; 시간만 기록"
     },
-    "human_judgment": "pass",
-    "human_notes": "qa_chunk_56(p.17 Q48/A48 단일 청크)가 Top-1으로 검색됨. 답변: 1종 5%, 2종 15% — PDF A48와 일치"
+    "human_judgment": null,
+    "human_notes": null
   },
   {
     "id": "Q3",
@@ -82,30 +82,30 @@
     "answerability_correct": true,
     "faithfulness": 1.0,
     "faithfulness_na_reason": null,
-    "factual_correctness_recall": 0.5,
-    "response_relevancy": 0.9999999999999997,
+    "factual_correctness_recall": 0.0,
+    "response_relevancy": 0.9228262875224887,
     "response_relevancy_na_reason": null,
     "context_recall": 0.0,
     "context_recall_na_reason": null,
     "timing": {
-      "retrieval_ms": 43,
-      "generation_ms": 10221,
-      "total_ms": 10264
+      "retrieval_ms": 45,
+      "generation_ms": 8917,
+      "total_ms": 8962
     },
     "cost": {
       "embedding_calls": 1,
       "bm25_calls": 0,
       "llm_calls": 1,
-      "input_tokens": 2542,
-      "output_tokens": 672,
-      "estimated_rag_cost_usd": 0.017706
+      "input_tokens": 2623,
+      "output_tokens": 574,
+      "estimated_rag_cost_usd": 0.016479
     },
     "eval_cost": {
-      "ragas_time_ms": 163456,
+      "ragas_time_ms": 154773,
       "note": "Ragas LLM 호출 수 미추적; 시간만 기록"
     },
-    "human_judgment": "pass",
-    "human_notes": "일반적인 경우 500원 명시. 1종/2종 구분 없지만 양쪽 모두 500원이므로 핵심 사실 충족. 추가 세부사항은 문서 내 근거 있음"
+    "human_judgment": null,
+    "human_notes": null
   },
   {
     "id": "Q4",
@@ -125,23 +125,23 @@
     "context_recall_na_reason": "unanswerable 질문 → N/A",
     "timing": {
       "retrieval_ms": 44,
-      "generation_ms": 6610,
-      "total_ms": 6654
+      "generation_ms": 3559,
+      "total_ms": 3603
     },
     "cost": {
       "embedding_calls": 1,
       "bm25_calls": 0,
       "llm_calls": 1,
-      "input_tokens": 2166,
-      "output_tokens": 330,
-      "estimated_rag_cost_usd": 0.011448
+      "input_tokens": 2523,
+      "output_tokens": 173,
+      "estimated_rag_cost_usd": 0.010164
     },
     "eval_cost": {
-      "ragas_time_ms": 163456,
+      "ragas_time_ms": 154773,
       "note": "Ragas LLM 호출 수 미추적; 시간만 기록"
     },
-    "human_judgment": "partial",
-    "human_notes": "거절 + 2026 문서의 부정수급 관련 내용(입원 20%, 외래 30%) 추가 — 질문과 무관한 문서 내 내용으로 혼란 유발"
+    "human_judgment": null,
+    "human_notes": null
   },
   {
     "id": "Q5",
@@ -152,7 +152,7 @@
     "page_hit_at_5": 1.0,
     "answerability_refused": true,
     "answerability_correct": null,
-    "faithfulness": 0.8333333333333334,
+    "faithfulness": 0.8571428571428571,
     "faithfulness_na_reason": null,
     "factual_correctness_recall": 1.0,
     "response_relevancy": 0.0,
@@ -160,60 +160,60 @@
     "context_recall": 1.0,
     "context_recall_na_reason": null,
     "timing": {
-      "retrieval_ms": 49,
-      "generation_ms": 9796,
-      "total_ms": 9845
+      "retrieval_ms": 48,
+      "generation_ms": 5172,
+      "total_ms": 5220
     },
     "cost": {
       "embedding_calls": 1,
       "bm25_calls": 0,
       "llm_calls": 1,
-      "input_tokens": 2747,
-      "output_tokens": 643,
-      "estimated_rag_cost_usd": 0.017886
+      "input_tokens": 2049,
+      "output_tokens": 328,
+      "estimated_rag_cost_usd": 0.011067
     },
     "eval_cost": {
-      "ragas_time_ms": 163456,
+      "ragas_time_ms": 154773,
       "note": "Ragas LLM 호출 수 미추적; 시간만 기록"
     },
-    "human_judgment": "partial",
-    "human_notes": "임플란트 1종 10%, 2종 20% 정확. 스케일링에 \"전체 치석제거 보건복지부 고시 시 급여 가능\" 언급 — 2026 문서 기반 정보로 순수 거절 대신 조건부 답변 제공"
+    "human_judgment": null,
+    "human_notes": null
   },
   {
     "id": "Q6",
     "type": "answerable",
     "question": "의료급여 2종 수급권자가 의원(1차의료급여기관)에서 외래 진료를 받을 때 본인부담금은 얼마인가요?",
     "config": "chunking",
-    "evidence_recall_at_5": 0.0,
-    "page_hit_at_5": 0.0,
-    "answerability_refused": true,
-    "answerability_correct": false,
-    "faithfulness": 0.5,
+    "evidence_recall_at_5": 1.0,
+    "page_hit_at_5": 1.0,
+    "answerability_refused": false,
+    "answerability_correct": true,
+    "faithfulness": 0.75,
     "faithfulness_na_reason": null,
     "factual_correctness_recall": 0.0,
     "response_relevancy": 0.0,
     "response_relevancy_na_reason": null,
-    "context_recall": 0.0,
+    "context_recall": 1.0,
     "context_recall_na_reason": null,
     "timing": {
-      "retrieval_ms": 45,
-      "generation_ms": 5708,
-      "total_ms": 5753
+      "retrieval_ms": 46,
+      "generation_ms": 8077,
+      "total_ms": 8123
     },
     "cost": {
       "embedding_calls": 1,
       "bm25_calls": 0,
       "llm_calls": 1,
-      "input_tokens": 2296,
-      "output_tokens": 312,
-      "estimated_rag_cost_usd": 0.011568
+      "input_tokens": 2367,
+      "output_tokens": 409,
+      "estimated_rag_cost_usd": 0.013236
     },
     "eval_cost": {
-      "ragas_time_ms": 163456,
+      "ragas_time_ms": 154773,
       "note": "Ragas LLM 호출 수 미추적; 시간만 기록"
     },
-    "human_judgment": "fail",
-    "human_notes": "p.5 표 1,000원 청크가 2026 문서 청크에 밀려 거절. 답변에 2종 연간 상한 80만원 언급 — 핵심(1,000원) 누락"
+    "human_judgment": null,
+    "human_notes": null
   },
   {
     "id": "Q7",
@@ -222,34 +222,34 @@
     "config": "chunking",
     "evidence_recall_at_5": 0.0,
     "page_hit_at_5": 0.0,
-    "answerability_refused": true,
-    "answerability_correct": false,
-    "faithfulness": 0.7142857142857143,
+    "answerability_refused": false,
+    "answerability_correct": true,
+    "faithfulness": 1.0,
     "faithfulness_na_reason": null,
-    "factual_correctness_recall": 0.0,
-    "response_relevancy": 0.0,
+    "factual_correctness_recall": 0.5,
+    "response_relevancy": 0.9448911823737468,
     "response_relevancy_na_reason": null,
-    "context_recall": 0.0,
+    "context_recall": 1.0,
     "context_recall_na_reason": null,
     "timing": {
-      "retrieval_ms": 42,
-      "generation_ms": 7224,
-      "total_ms": 7266
+      "retrieval_ms": 44,
+      "generation_ms": 9722,
+      "total_ms": 9766
     },
     "cost": {
       "embedding_calls": 1,
       "bm25_calls": 0,
       "llm_calls": 1,
-      "input_tokens": 2146,
-      "output_tokens": 420,
-      "estimated_rag_cost_usd": 0.012738
+      "input_tokens": 2428,
+      "output_tokens": 540,
+      "estimated_rag_cost_usd": 0.015384
     },
     "eval_cost": {
-      "ragas_time_ms": 163456,
+      "ragas_time_ms": 154773,
       "note": "Ragas LLM 호출 수 미추적; 시간만 기록"
     },
-    "human_judgment": "fail",
-    "human_notes": "Q53 본문이 검색되지 않아 \"본인부담금 보상제와 틀니 비용 포함 여부를 직접적으로 설명한 내용은 찾을 수 없습니다\"로 거절. 핵심 제외 사실 누락"
+    "human_judgment": null,
+    "human_notes": null
   },
   {
     "id": "Q8",
@@ -260,7 +260,7 @@
     "page_hit_at_5": 0.0,
     "answerability_refused": true,
     "answerability_correct": false,
-    "faithfulness": 0.6666666666666666,
+    "faithfulness": 0.3333333333333333,
     "faithfulness_na_reason": null,
     "factual_correctness_recall": 0.0,
     "response_relevancy": 0.0,
@@ -268,24 +268,24 @@
     "context_recall": 0.0,
     "context_recall_na_reason": null,
     "timing": {
-      "retrieval_ms": 46,
-      "generation_ms": 8758,
-      "total_ms": 8804
+      "retrieval_ms": 45,
+      "generation_ms": 7815,
+      "total_ms": 7860
     },
     "cost": {
       "embedding_calls": 1,
       "bm25_calls": 0,
       "llm_calls": 1,
-      "input_tokens": 2731,
-      "output_tokens": 427,
-      "estimated_rag_cost_usd": 0.014598
+      "input_tokens": 2371,
+      "output_tokens": 409,
+      "estimated_rag_cost_usd": 0.013248
     },
     "eval_cost": {
-      "ragas_time_ms": 163456,
+      "ragas_time_ms": 154773,
       "note": "Ragas LLM 호출 수 미추적; 시간만 기록"
     },
-    "human_judgment": "fail",
-    "human_notes": "p.6 조현병 테이블 추출 실패로 거절. 모든 구성 공통 실패"
+    "human_judgment": null,
+    "human_notes": null
   },
   {
     "id": "Q9",
@@ -298,29 +298,29 @@
     "answerability_correct": true,
     "faithfulness": null,
     "faithfulness_na_reason": "거절 답변(unanswerable question)에는 검증할 주장이 없으므로 N/A",
-    "factual_correctness_recall": 0.5,
+    "factual_correctness_recall": 1.0,
     "response_relevancy": null,
     "response_relevancy_na_reason": "거절 답변(unanswerable question)에는 관련성 점수가 무의미 → N/A",
     "context_recall": null,
     "context_recall_na_reason": "unanswerable 질문 → N/A",
     "timing": {
-      "retrieval_ms": 45,
-      "generation_ms": 7620,
-      "total_ms": 7665
+      "retrieval_ms": 43,
+      "generation_ms": 3390,
+      "total_ms": 3433
     },
     "cost": {
       "embedding_calls": 1,
       "bm25_calls": 0,
       "llm_calls": 1,
-      "input_tokens": 2209,
-      "output_tokens": 410,
-      "estimated_rag_cost_usd": 0.012777
+      "input_tokens": 2214,
+      "output_tokens": 159,
+      "estimated_rag_cost_usd": 0.009027
     },
     "eval_cost": {
-      "ragas_time_ms": 163456,
+      "ragas_time_ms": 154773,
       "note": "Ragas LLM 호출 수 미추적; 시간만 기록"
     },
-    "human_judgment": "fail",
-    "human_notes": "2026 문서의 \"출국기간 중 발생한 진료비 환수\" 청크 검색 → 거절 대신 답변 생성. 평가 설계상 Q9는 2024 FAQ 기준 unanswerable — rubric: fail = 답변"
+    "human_judgment": null,
+    "human_notes": null
   }
 ]
