@@ -32,8 +32,8 @@
       "ragas_time_ms": 163456,
       "note": "Ragas LLM 호출 수 미추적; 시간만 기록"
     },
-    "human_judgment": null,
-    "human_notes": null
+    "human_judgment": "fail",
+    "human_notes": "2026 안내 문서(p.628) 청크가 Top-5를 차지해 2024 FAQ A25(응급/장애인 보조기기)를 검색하지 못함. 답변이 한의원 예외를 언급하고 \"추가 내용 찾을 수 없습니다\"로 핵심 누락"
   },
   {
     "id": "Q2",
@@ -68,8 +68,8 @@
       "ragas_time_ms": 163456,
       "note": "Ragas LLM 호출 수 미추적; 시간만 기록"
     },
-    "human_judgment": null,
-    "human_notes": null
+    "human_judgment": "pass",
+    "human_notes": "qa_chunk_56(p.17 Q48/A48 단일 청크)가 Top-1으로 검색됨. 답변: 1종 5%, 2종 15% — PDF A48와 일치"
   },
   {
     "id": "Q3",
@@ -104,8 +104,8 @@
       "ragas_time_ms": 163456,
       "note": "Ragas LLM 호출 수 미추적; 시간만 기록"
     },
-    "human_judgment": null,
-    "human_notes": null
+    "human_judgment": "pass",
+    "human_notes": "일반적인 경우 500원 명시. 1종/2종 구분 없지만 양쪽 모두 500원이므로 핵심 사실 충족. 추가 세부사항은 문서 내 근거 있음"
   },
   {
     "id": "Q4",
@@ -140,8 +140,8 @@
       "ragas_time_ms": 163456,
       "note": "Ragas LLM 호출 수 미추적; 시간만 기록"
     },
-    "human_judgment": null,
-    "human_notes": null
+    "human_judgment": "partial",
+    "human_notes": "거절 + 2026 문서의 부정수급 관련 내용(입원 20%, 외래 30%) 추가 — 질문과 무관한 문서 내 내용으로 혼란 유발"
   },
   {
     "id": "Q5",
@@ -176,8 +176,8 @@
       "ragas_time_ms": 163456,
       "note": "Ragas LLM 호출 수 미추적; 시간만 기록"
     },
-    "human_judgment": null,
-    "human_notes": null
+    "human_judgment": "partial",
+    "human_notes": "임플란트 1종 10%, 2종 20% 정확. 스케일링에 \"전체 치석제거 보건복지부 고시 시 급여 가능\" 언급 — 2026 문서 기반 정보로 순수 거절 대신 조건부 답변 제공"
   },
   {
     "id": "Q6",
@@ -212,8 +212,8 @@
       "ragas_time_ms": 163456,
       "note": "Ragas LLM 호출 수 미추적; 시간만 기록"
     },
-    "human_judgment": null,
-    "human_notes": null
+    "human_judgment": "fail",
+    "human_notes": "p.5 표 1,000원 청크가 2026 문서 청크에 밀려 거절. 답변에 2종 연간 상한 80만원 언급 — 핵심(1,000원) 누락"
   },
   {
     "id": "Q7",
@@ -248,8 +248,8 @@
       "ragas_time_ms": 163456,
       "note": "Ragas LLM 호출 수 미추적; 시간만 기록"
     },
-    "human_judgment": null,
-    "human_notes": null
+    "human_judgment": "fail",
+    "human_notes": "Q53 본문이 검색되지 않아 \"본인부담금 보상제와 틀니 비용 포함 여부를 직접적으로 설명한 내용은 찾을 수 없습니다\"로 거절. 핵심 제외 사실 누락"
   },
   {
     "id": "Q8",
@@ -284,8 +284,8 @@
       "ragas_time_ms": 163456,
       "note": "Ragas LLM 호출 수 미추적; 시간만 기록"
     },
-    "human_judgment": null,
-    "human_notes": null
+    "human_judgment": "fail",
+    "human_notes": "p.6 조현병 테이블 추출 실패로 거절. 모든 구성 공통 실패"
   },
   {
     "id": "Q9",
@@ -320,7 +320,7 @@
       "ragas_time_ms": 163456,
       "note": "Ragas LLM 호출 수 미추적; 시간만 기록"
     },
-    "human_judgment": null,
-    "human_notes": null
+    "human_judgment": "fail",
+    "human_notes": "2026 문서의 \"출국기간 중 발생한 진료비 환수\" 청크 검색 → 거절 대신 답변 생성. 평가 설계상 Q9는 2024 FAQ 기준 unanswerable — rubric: fail = 답변"
   }
 ]

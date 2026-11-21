@@ -11,25 +11,25 @@
     "faithfulness": 1.0,
     "faithfulness_na_reason": null,
     "factual_correctness_recall": 1.0,
-    "response_relevancy": 0.9503908877020669,
+    "response_relevancy": 0.9830978942513772,
     "response_relevancy_na_reason": null,
     "context_recall": 1.0,
     "context_recall_na_reason": null,
     "timing": {
-      "retrieval_ms": 50,
-      "generation_ms": 6755,
-      "total_ms": 6805
+      "retrieval_ms": 51,
+      "generation_ms": 7278,
+      "total_ms": 7329
     },
     "cost": {
       "embedding_calls": 1,
       "bm25_calls": 0,
       "llm_calls": 1,
       "input_tokens": 2730,
-      "output_tokens": 412,
-      "estimated_rag_cost_usd": 0.01437
+      "output_tokens": 420,
+      "estimated_rag_cost_usd": 0.01449
     },
     "eval_cost": {
-      "ragas_time_ms": 164201,
+      "ragas_time_ms": 156885,
       "note": "Ragas LLM 호출 수 미추적; 시간만 기록"
     },
     "human_judgment": null,
@@ -44,7 +44,7 @@
     "page_hit_at_5": 1.0,
     "answerability_refused": true,
     "answerability_correct": false,
-    "faithfulness": 0.8,
+    "faithfulness": 0.4,
     "faithfulness_na_reason": null,
     "factual_correctness_recall": 0.0,
     "response_relevancy": 0.0,
@@ -52,20 +52,20 @@
     "context_recall": 0.0,
     "context_recall_na_reason": null,
     "timing": {
-      "retrieval_ms": 50,
-      "generation_ms": 6820,
-      "total_ms": 6870
+      "retrieval_ms": 49,
+      "generation_ms": 3892,
+      "total_ms": 3941
     },
     "cost": {
       "embedding_calls": 1,
       "bm25_calls": 0,
       "llm_calls": 1,
       "input_tokens": 1119,
-      "output_tokens": 305,
-      "estimated_rag_cost_usd": 0.007932
+      "output_tokens": 204,
+      "estimated_rag_cost_usd": 0.006417
     },
     "eval_cost": {
-      "ragas_time_ms": 164201,
+      "ragas_time_ms": 156885,
       "note": "Ragas LLM 호출 수 미추적; 시간만 기록"
     },
     "human_judgment": null,
@@ -80,28 +80,28 @@
     "page_hit_at_5": 1.0,
     "answerability_refused": false,
     "answerability_correct": true,
-    "faithfulness": 0.9166666666666666,
+    "faithfulness": 0.8181818181818182,
     "faithfulness_na_reason": null,
     "factual_correctness_recall": 1.0,
-    "response_relevancy": 0.9828468443958549,
+    "response_relevancy": 0.9718573605067067,
     "response_relevancy_na_reason": null,
     "context_recall": 0.0,
     "context_recall_na_reason": null,
     "timing": {
-      "retrieval_ms": 47,
-      "generation_ms": 9566,
-      "total_ms": 9613
+      "retrieval_ms": 46,
+      "generation_ms": 11671,
+      "total_ms": 11717
     },
     "cost": {
       "embedding_calls": 1,
       "bm25_calls": 0,
       "llm_calls": 1,
       "input_tokens": 2480,
-      "output_tokens": 547,
-      "estimated_rag_cost_usd": 0.015645
+      "output_tokens": 638,
+      "estimated_rag_cost_usd": 0.01701
     },
     "eval_cost": {
-      "ragas_time_ms": 164201,
+      "ragas_time_ms": 156885,
       "note": "Ragas LLM 호출 수 미추적; 시간만 기록"
     },
     "human_judgment": null,
@@ -124,20 +124,20 @@
     "context_recall": null,
     "context_recall_na_reason": "unanswerable 질문 → N/A",
     "timing": {
-      "retrieval_ms": 44,
-      "generation_ms": 5846,
-      "total_ms": 5890
+      "retrieval_ms": 45,
+      "generation_ms": 6445,
+      "total_ms": 6490
     },
     "cost": {
       "embedding_calls": 1,
       "bm25_calls": 0,
       "llm_calls": 1,
       "input_tokens": 2876,
-      "output_tokens": 278,
-      "estimated_rag_cost_usd": 0.012798
+      "output_tokens": 291,
+      "estimated_rag_cost_usd": 0.012993
     },
     "eval_cost": {
-      "ragas_time_ms": 164201,
+      "ragas_time_ms": 156885,
       "note": "Ragas LLM 호출 수 미추적; 시간만 기록"
     },
     "human_judgment": null,
@@ -152,28 +152,28 @@
     "page_hit_at_5": 1.0,
     "answerability_refused": true,
     "answerability_correct": null,
-    "faithfulness": 0.875,
+    "faithfulness": 0.8571428571428571,
     "faithfulness_na_reason": null,
     "factual_correctness_recall": 1.0,
-    "response_relevancy": 0.9565929967457234,
+    "response_relevancy": 0.0,
     "response_relevancy_na_reason": null,
     "context_recall": 1.0,
     "context_recall_na_reason": null,
     "timing": {
       "retrieval_ms": 53,
-      "generation_ms": 8869,
-      "total_ms": 8922
+      "generation_ms": 7719,
+      "total_ms": 7772
     },
     "cost": {
       "embedding_calls": 1,
       "bm25_calls": 0,
       "llm_calls": 1,
       "input_tokens": 2507,
-      "output_tokens": 400,
-      "estimated_rag_cost_usd": 0.013521
+      "output_tokens": 331,
+      "estimated_rag_cost_usd": 0.012486
     },
     "eval_cost": {
-      "ragas_time_ms": 164201,
+      "ragas_time_ms": 156885,
       "note": "Ragas LLM 호출 수 미추적; 시간만 기록"
     },
     "human_judgment": null,
@@ -188,28 +188,28 @@
     "page_hit_at_5": 1.0,
     "answerability_refused": false,
     "answerability_correct": true,
-    "faithfulness": 1.0,
+    "faithfulness": 0.7142857142857143,
     "faithfulness_na_reason": null,
     "factual_correctness_recall": 1.0,
-    "response_relevancy": 0.9961290102552042,
+    "response_relevancy": 0.9903165573211249,
     "response_relevancy_na_reason": null,
     "context_recall": 1.0,
     "context_recall_na_reason": null,
     "timing": {
-      "retrieval_ms": 57,
-      "generation_ms": 7367,
-      "total_ms": 7424
+      "retrieval_ms": 48,
+      "generation_ms": 7821,
+      "total_ms": 7869
     },
     "cost": {
       "embedding_calls": 1,
       "bm25_calls": 0,
       "llm_calls": 1,
       "input_tokens": 2874,
-      "output_tokens": 361,
-      "estimated_rag_cost_usd": 0.014037
+      "output_tokens": 402,
+      "estimated_rag_cost_usd": 0.014652
     },
     "eval_cost": {
-      "ragas_time_ms": 164201,
+      "ragas_time_ms": 156885,
       "note": "Ragas LLM 호출 수 미추적; 시간만 기록"
     },
     "human_judgment": null,
@@ -224,28 +224,28 @@
     "page_hit_at_5": 1.0,
     "answerability_refused": false,
     "answerability_correct": true,
-    "faithfulness": 0.9166666666666666,
+    "faithfulness": 1.0,
     "faithfulness_na_reason": null,
-    "factual_correctness_recall": 0.6,
-    "response_relevancy": 0.9518568071592858,
+    "factual_correctness_recall": 1.0,
+    "response_relevancy": 0.9530685611522456,
     "response_relevancy_na_reason": null,
     "context_recall": 1.0,
     "context_recall_na_reason": null,
     "timing": {
-      "retrieval_ms": 44,
-      "generation_ms": 8806,
-      "total_ms": 8850
+      "retrieval_ms": 46,
+      "generation_ms": 9370,
+      "total_ms": 9416
     },
     "cost": {
       "embedding_calls": 1,
       "bm25_calls": 0,
       "llm_calls": 1,
       "input_tokens": 2088,
-      "output_tokens": 437,
-      "estimated_rag_cost_usd": 0.012819
+      "output_tokens": 473,
+      "estimated_rag_cost_usd": 0.013359
     },
     "eval_cost": {
-      "ragas_time_ms": 164201,
+      "ragas_time_ms": 156885,
       "note": "Ragas LLM 호출 수 미추적; 시간만 기록"
     },
     "human_judgment": null,
@@ -260,7 +260,7 @@
     "page_hit_at_5": 0.0,
     "answerability_refused": true,
     "answerability_correct": false,
-    "faithfulness": 0.6666666666666666,
+    "faithfulness": 0.25,
     "faithfulness_na_reason": null,
     "factual_correctness_recall": 0.0,
     "response_relevancy": 0.0,
@@ -268,20 +268,20 @@
     "context_recall": 0.0,
     "context_recall_na_reason": null,
     "timing": {
-      "retrieval_ms": 47,
-      "generation_ms": 9840,
-      "total_ms": 9887
+      "retrieval_ms": 46,
+      "generation_ms": 7295,
+      "total_ms": 7341
     },
     "cost": {
       "embedding_calls": 1,
       "bm25_calls": 0,
       "llm_calls": 1,
       "input_tokens": 2902,
-      "output_tokens": 533,
-      "estimated_rag_cost_usd": 0.016701
+      "output_tokens": 409,
+      "estimated_rag_cost_usd": 0.014841
     },
     "eval_cost": {
-      "ragas_time_ms": 164201,
+      "ragas_time_ms": 156885,
       "note": "Ragas LLM 호출 수 미추적; 시간만 기록"
     },
     "human_judgment": null,
@@ -305,19 +305,19 @@
     "context_recall_na_reason": "unanswerable 질문 → N/A",
     "timing": {
       "retrieval_ms": 47,
-      "generation_ms": 3172,
-      "total_ms": 3219
+      "generation_ms": 3733,
+      "total_ms": 3780
     },
     "cost": {
       "embedding_calls": 1,
       "bm25_calls": 0,
       "llm_calls": 1,
       "input_tokens": 2727,
-      "output_tokens": 166,
-      "estimated_rag_cost_usd": 0.010671
+      "output_tokens": 178,
+      "estimated_rag_cost_usd": 0.010851
     },
     "eval_cost": {
-      "ragas_time_ms": 164201,
+      "ragas_time_ms": 156885,
       "note": "Ragas LLM 호출 수 미추적; 시간만 기록"
     },
     "human_judgment": null,

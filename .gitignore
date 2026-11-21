@@ -7,5 +7,5 @@ __pycache__/
 node_modules/
 .claude
 plan.md
+week-02/proLmpa/chroma_db/
 week-02/proLmpa/data/
-*chroma.sqlite3
