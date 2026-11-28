@@ -14,6 +14,22 @@ Agent에서는 모델이 현재 상태(사용자 요청 + 지금까지의 Tool �
 
 실행 프로그램(LangChain `create_agent`)은 모델이 Tool 호출을 선택하면, 해당 함수를 실제로 실행하고 반환값을 `ToolMessage`로 메시지 히스토리에 추가한 뒤 모델에게 다시 전달한다. 이 과정을 모델이 최종 응답을 낼 때까지 반복한다.
 
+`create_agent`는 내부적으로 두 노드를 가진 LangGraph를 생성한다.
+
+```
+[agent 노드] ──tool_calls 있음──► [tools 노드] ──► [agent 노드] ──► ...
+                                                              │
+                                              tool_calls 없음 ▼
+                                                       최종 응답 반환
+```
+
+| 단계 | 주체 | 하는 일 |
+|---|---|---|
+| tool_calls 결정 | 모델(Claude) | 어떤 함수를, 어떤 인자로 호출할지 선택 |
+| 함수 실행 | LangGraph tools 노드 | 이름으로 함수 찾아 `args` 그대로 호출 |
+| 결과 전달 | LangGraph | 반환값을 `ToolMessage`로 감싸 히스토리에 추가 |
+| 다음 행동 결정 | 모델(Claude) | ToolMessage 읽고 또 tool 호출할지, 최종 답변 낼지 판단 |
+
 **Q3. ReAct의 판단·행동·관찰은 본인의 구현에서 어디에 해당하나요?**
 
 | ReAct | 본 구현에서의 해당 지점 |
